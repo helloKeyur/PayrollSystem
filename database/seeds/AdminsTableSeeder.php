@@ -19,6 +19,6 @@ class AdminsTableSeeder extends Seeder
     		'image' => 'user.jpg',
     		'password' => Hash::make('123456'), 
     	]);
-        $this->command->info('Inserted '.count($admin).' Admin.');
+        $this->command->info('Inserted 1 Admin.');
     }
 }

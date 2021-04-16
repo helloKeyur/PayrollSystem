@@ -9,7 +9,7 @@ class MenuViewComposer {
     public function compose(View $view) {
     	$total_attendance = Attendance::count();
     	$ontime_attendance = Attendance::where("ontime_status",1)->count();
-    	$percentage = number_format(($ontime_attendance/$total_attendance)*100,2);
+    	$percentage =  $total_attendance == 0 ? 0 : number_format(($ontime_attendance/$total_attendance)*100,2);
         $view->with('counts', [
                 'admins' => Admin::count() - 1,
                 'positions' => Position::count(),
