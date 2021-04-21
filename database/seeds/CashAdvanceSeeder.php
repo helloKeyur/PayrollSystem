@@ -15,10 +15,22 @@ class CashAdvanceSeeder extends Seeder
         $datas = [
     		[
     			'title' => "First Cash Advance for employee",
-    			'rate_amount' => 100.00,
+    			'rate_amount' => 1000.00,
     			'employee_id' => App\Employee::first()->id,
     			'date' => "2021-04-01",
     		],
+            [
+                'title' => "First Cash Advance for employee",
+                'rate_amount' => 1500.00,
+                'employee_id' => App\Employee::where("id",2)->first()->id,
+                'date' => "2021-04-01",
+            ],
+            [
+                'title' => "First Cash Advance for employee",
+                'rate_amount' => 4000.00,
+                'employee_id' => App\Employee::where("id",3)->first()->id,
+                'date' => "2021-04-01",
+            ],
     	];
 
     	$count = 0;

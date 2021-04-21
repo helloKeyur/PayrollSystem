@@ -15,7 +15,7 @@ class DeductionSeeder extends Seeder
         $datas = [
     		[
     			'name' => "Standard Deduction",
-    			'amount' => 1200.00,
+    			'amount' => 600.00,
     			'description' => "The Indian Finance Minister, while presenting the Union Budget 2018, announced a standard deduction amounting to Rs. 40,000 for salaried employees.",
     		],
     		[

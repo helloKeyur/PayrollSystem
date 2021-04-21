@@ -21,6 +21,30 @@ class OvertimeSeeder extends Seeder
     			'date' => "2021-04-01",
     			'description' => "On this day we are schedule first overtime for employees.",
     		],
+            [
+                'title' => "First Overtime for last check",
+                'rate_amount' => 300.00,
+                'hour' => 3,
+                'employee_id' => App\Employee::where("id",2)->first()->id,
+                'date' => "2021-04-06",
+                'description' => "On this day we are schedule first overtime for employees.",
+            ],
+            [
+                'title' => "First Overtime for last check",
+                'rate_amount' => 480.00,
+                'hour' => 4,
+                'employee_id' => App\Employee::where("id",3)->first()->id,
+                'date' => "2021-04-10",
+                'description' => "On this day we are schedule first overtime for employees.",
+            ],
+            [
+                'title' => "First Overtime for last check",
+                'rate_amount' => 580.00,
+                'hour' => 5,
+                'employee_id' => App\Employee::where("id",4)->first()->id,
+                'date' => "2021-04-14",
+                'description' => "On this day we are schedule first overtime for employees.",
+            ],
     	];
 
     	$count = 0;

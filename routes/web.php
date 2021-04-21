@@ -1,16 +1,42 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/*application configration routes*/
+Route::group(['prefix'=>'clear'],function(){
+	Route::get('cache', function () {
+	    \Artisan::call('cache:clear');
+	    dd("Cache is cleared");
+	});
+	Route::get('view', function () {
+	    \Artisan::call('view:clear');
+	    dd("View is cleared");
+	});
+	Route::get('route', function () {
+		\Artisan::call('route:clear');
+		dd("route is cleared");
+	});
+	Route::get('event', function () {
+		\Artisan::call('event:clear');
+		dd("Events is cleared");
+	});
+});
 
+Route::get('config-cache', function () {
+	\Artisan::call('config:cache');
+	dd("Config is cached.");
+});
+
+Route::get('storage-link', function () {
+	\Artisan::call('storage:link');
+	dd("Storage link successfully.");
+});
+
+Route::get('sym-storage-link', function () {
+	$targetFolder = $_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
+	$linkFolder = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+	symlink($targetFolder,$linkFolder);
+	dd('Symlink process successfully completed');
+});
+/* end of application configration routes*/
 Route::get('/','Admin\DashboardController@dashboard')->middleware('RedirectWhenNotLogin')->name('dash');
 
 // checkin routes
