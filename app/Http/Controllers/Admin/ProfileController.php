@@ -21,7 +21,7 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request){
-    	$userpassword = DB::table("admins")->where("id",auth()->id())->first()->password;
+        $userpassword = DB::table("admins")->where("id",auth()->id())->first()->password;
 
     	if(isset($request->password) && Hash::check($request->password, $userpassword)){
 
@@ -31,7 +31,7 @@ class ProfileController extends Controller
     		}
     		$data = [
     			'username' => $request->username,
-    			'email' => $request->email,
+    			'email' => auth()->user()->email,
     			'password' => $password,
     		];
     		Admin::find(auth()->id())->update($data);

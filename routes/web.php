@@ -1,6 +1,7 @@
 <?php
 
 /*application configration routes*/
+/*
 Route::group(['prefix'=>'clear'],function(){
 	Route::get('cache', function () {
 	    \Artisan::call('cache:clear');
@@ -36,6 +37,8 @@ Route::get('sym-storage-link', function () {
 	symlink($targetFolder,$linkFolder);
 	dd('Symlink process successfully completed');
 });
+
+*/
 /* end of application configration routes*/
 Route::get('/','Admin\DashboardController@dashboard')->middleware('RedirectWhenNotLogin')->name('dash');
 

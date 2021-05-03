@@ -55,7 +55,10 @@ class AttendanceController extends Controller
                             $status .= "</span>";
                             return $status;
                     })
-                    ->rawColumns(['employee','action','time_in_details'])
+                    ->addColumn('work_hr', function($data){
+                            return $data->num_hour."/hr";
+                    })
+                    ->rawColumns(['employee','action','time_in_details','work_hr'])
                     ->toJson();
     }
 

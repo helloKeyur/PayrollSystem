@@ -26,26 +26,26 @@ class AttendanceObserver
 
         $emp_schd_time_in = strtotime($employee->schedule->time_in);
         $emp_schd_time_out = strtotime($employee->schedule->time_out);
-        $emp_working_hour = round(abs($emp_schd_time_out - $emp_schd_time_in) / 3600,2);
+        $emp_working_hour = round(abs($emp_schd_time_out - $emp_schd_time_in) / 60,2);
 
         // calculate check_in time with schedule time
         $time_in = strtotime($attendance->time_in);
         $time_out = strtotime($attendance->time_out);
-        $working_hour = round(abs($time_out - $time_in) / 3600,2);
+        $working_hour = round(abs($time_out - $time_in) / 60,2);
 
         // calculating ontime_status
         if($attendance->ontime_status == 1){ // ontime_checkin
             $curnt_working_hour = $emp_working_hour - $working_hour;
             if($working_hour > $emp_working_hour){
-                $attendance->num_hour = $working_hour;
+                $attendance->num_hour = hoursandmins($working_hour);
             }
             elseif($curnt_working_hour <= 1){ 
-                $attendance->num_hour = $emp_working_hour;
+                $attendance->num_hour = hoursandmins($emp_working_hour);
             }else{
-                $attendance->num_hour = $working_hour;
+                $attendance->num_hour = hoursandmins($working_hour);
             }
         }else{
-            $attendance->num_hour = $working_hour;
+            $attendance->num_hour = hoursandmins($working_hour);
         }
     }
 }

@@ -26,6 +26,46 @@
           </thead>
           <tbody>
 
+            @foreach($cashadvances as $k => $advance)
+            <tr>
+              <td>{{ $advance->date }}</td>
+              <td>
+                <div class="row">
+                  <div class="col-md-3 text-center">
+                    <img src="{{ $advance->employee->media_url['thumb'] }}" class="rounded-circle table-user-thumb">
+                  </div>
+                  <div class="col-md-8 col-lg-8 my-auto">
+                    <b class="mb-0">{{ $advance->employee->first_name." ".$advance->employee->last_name }} </b>
+                    <p class="mb-2" title="{{ $advance->employee->employee_id }}">
+                      <small>
+                        <i class="ik ik-at-sign"></i>{{$advance->employee->employee_id}}
+                      </small>
+                    </p>
+                  </div>
+                  <div class="col-md-2 col-lg-2">
+                    <small class="text-muted float-right"></small>
+                  </div>
+                </div>
+              </td>
+              <td>{{ $advance->title }}</td>
+              <td>{{ $advance->rate_amount }}</td>
+              <td>
+                <div class='table-actions text-center'>
+                  <a href="{{route("admin.cashadvance.edit",['slug'=>$advance->slug])}}"><i class='ik ik-edit-2 text-dark'></i></a>
+                  <a data-href="{{route("admin.cashadvance.destroy",['slug'=>$advance->slug])}}" class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
+                </div>
+              </td>
+              <td>
+                <div class="custom-control custom-checkbox pl-1 align-self-center">
+                  <label class="custom-control custom-checkbox mb-0">
+                    <input type="checkbox" class="custom-control-input sub_chk" data-id="{{$advance->id}}">
+                    <span class="custom-control-label"></span>
+                  </label>
+                </div>
+              </td>
+            </tr>
+            @endforeach
+
           </tbody>
         </table>
     </div>
@@ -36,47 +76,7 @@
 <!--End data here-->
 
 <script type="text/javascript">
-
-  $(document).ready(function() {
-
-  // get data from serve ajax
-  var merchantDataTable = $("table#cashadvance_data_table").DataTable({
-    "processing": true,
-    "serverSide": true,
-    "pagingType":"full_numbers",
-    "pageLength":25,
-    "autoWidth": false,
-    "lengthMenu": [ [10, 25, 50, 100,-1], [10, 25, 50,100, "All"] ],
-    "ajax": {
-      "url": "{{ $getDataTable }}",
-      "type": "POST"
-    },
-    "columnDefs": [
-    {
-      'targets': 5,
-      'searchable':false,
-      'orderable':false,
-      'render': function (data, type, full, meta){
-       return "<div class='custom-control custom-checkbox pl-1 align-self-center'><label class='custom-control custom-checkbox mb-0'><input type='checkbox' class='custom-control-input sub_chk' data-id='"+$('<div/>').text(data).html()+"'><span class='custom-control-label'></span></label></div>";
-     }
-   },
-   {
-    'targets': [0,4,5],
-    'searchable':false,
-    'orderable':false,
-    "className": "text-center"
-  }
-  ],
-  "columns":[
-  {"data":"date"},
-  {"data":"employee"},
-  {"data":"title"},
-  {"data":"rate_amount"},
-  {"data":"action"},
-  {"data":"id"},
-  ],
-});
-
-});
-
+  $(document).ready(function(){
+    $("#cashadvance_data_table").DataTable();
+  });
 </script>

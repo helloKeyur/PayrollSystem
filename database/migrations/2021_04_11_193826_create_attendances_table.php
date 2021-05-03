@@ -18,7 +18,7 @@ class CreateAttendancesTable extends Migration
             $table->date('date');
             $table->time('time_in',0);
             $table->time('time_out',0)->nullable();
-            $table->float('num_hour',8,2);
+            $table->string('num_hour');
             $table->unsignedBigInteger('employee_id')->nullable();
             $table->boolean('ontime_status');
             $table->foreign('employee_id')

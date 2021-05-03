@@ -20,10 +20,12 @@ class CashAdvanceController extends Controller
     }
 
     public function getData(){
+        $cashadvance = CashAdvance::get();
         return View($this->folder.'content',[
             'add_new' => route($this->folder.'create'),
-            'getDataTable' => route($this->folder.'getDataTable'),
+            // 'getDataTable' => route($this->folder.'getDataTable'),
             'moveToTrashAllLink' => route($this->folder.'massDelete'),
+            'cashadvances' => $cashadvance,
         ]);
     }
 

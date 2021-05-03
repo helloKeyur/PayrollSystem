@@ -111,6 +111,7 @@
         
         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
         <script>window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
         <script src="{{ asset('admin_assets/plugins/popper.js/dist/umd/popper.min.js') }}"></script>
         <script src="{{ asset('admin_assets/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -137,7 +138,7 @@
         <script src="{{ asset('admin_assets/plugins/owl.carousel/dist/owl.carousel.min.js')}}"></script>
         <script src="{{ asset('admin_assets/plugins/json-viewer/jquery.json-viewer.js')}}"></script>
         <script src="{{ asset('admin_assets/plugins/jquery.repeater/jquery.form-repeater.min.js')}}"></script>
-        <script src="http://malsup.github.com/jquery.form.js"></script>
+        {{-- <script src="http://malsup.github.com/jquery.form.js"></script> --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
         <script src="{{ asset('admin_assets/plugins/sweetalert/dist/sweetalert.min.js') }}"></script>

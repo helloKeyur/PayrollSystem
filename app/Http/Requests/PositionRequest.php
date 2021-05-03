@@ -29,7 +29,7 @@ class PositionRequest extends FormRequest
         }
         else 
         {
-            $title_rules = "required|unique:deductions";
+            $title_rules = "required|unique:positions";
         }
         return [
             'title' => $title_rules,

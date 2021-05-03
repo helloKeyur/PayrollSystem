@@ -116,13 +116,13 @@ class Employee extends Model implements HasMedia
         ];  
         if(!is_null($this->attributes['media_id']) && !is_null($this->avatarMedia)){
             $imgurl = $this->avatarMedia->getFullUrl();
-            $imgHeaders = @get_headers( str_replace(" ", "%20", $imgurl) )[0];
-            if(file_exists($this->avatarMedia->getPath()) && ($imgHeaders != 'HTTP/1.1 404 Not Found')){
+            // $imgHeaders = @get_headers( str_replace(" ", "%20", $imgurl) )[0];
+            // if(file_exists($this->avatarMedia->getPath()) && ($imgHeaders != 'HTTP/1.1 404 Not Found')){
                 $url = [
                     'original' => $this->avatarMedia->getFullUrl(),
                     'thumb' => $this->avatarMedia->getFullUrl('thumb'),
                 ];
-            }
+            // }
         }
         return $url;
     }

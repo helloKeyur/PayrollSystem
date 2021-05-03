@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('title') Create Overtime @endsection
+@section('title') Create Cash Advance @endsection
 
 @section('css')
 
@@ -27,8 +27,8 @@
         <div class="page-header-title">
            <i class="ik ik-at-sign bg-blue"></i>
            <div class="d-inline">
-              <h5>Overtimes</h5>
-              <span>Create Overtime, Please fill all field correctly.</span>
+              <h5>Cash Advances</h5>
+              <span>Create Cash Advance, Please fill all field correctly.</span>
           </div>
       </div>
   </div>
@@ -39,7 +39,7 @@
              <a href="{{ route('admin.dashboard') }}"><i class="ik ik-home"></i></a>
          </li>
          <li class="breadcrumb-item">
-             <a href="{{ route('admin.cashadvance.index') }}">Overtimes</a>
+             <a href="{{ route('admin.cashadvance.index') }}">Cash Advances</a>
          </li>
          <li class="breadcrumb-item active" aria-current="page">Create</li>
      </ol>
@@ -58,11 +58,11 @@
             <div class="widget-body">
                 <div class="overlay hidden">
                     <i class="ik ik-refresh-ccw loading"></i>
-                    <span class="overlay-text">New Overtime Creating...</span>
+                    <span class="overlay-text">New Cash Advance Creating...</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="state">
-                        <h5 class="text-secondary">Create Overtime</h5>
+                        <h5 class="text-secondary">Create Cash Advance</h5>
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
                       <div class="col-md-8 col-lg-8 col-sm-12">
                        <div class="form-group">
                         <label for="title">Title</label><small class="text-danger">*</small>
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Some Title or Resone of Overtime" autocomplete="off">
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Some Title or Resone of Cash Advance" autocomplete="off">
                         <small class="text-danger err" id="title-err"></small>
                       </div>
                       </div>
@@ -101,7 +101,7 @@
                       <div class="col-md-12 col-lg-12 col-sm-12">
                        <div class="form-group">
                         <label for="rate_amount">Amount</label><small class="text-danger">*</small>
-                        <input type="text" name="rate_amount" class="form-control" id="rate_amount" placeholder="200.00" autocomplete="off">
+                        <input type="text" name="rate_amount" class="form-control allowDcNum" id="rate_amount" placeholder="200.00" autocomplete="off">
                         <small class="text-danger err" id="rate_amount-err">It's important for Payscal calculation.</small>
                       </div>
                       </div>
