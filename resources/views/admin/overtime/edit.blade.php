@@ -111,7 +111,31 @@
                 <div class="col-md-6 col-lg-6 col-sm-12">
                  <div class="form-group">
                   <label for="hour">Hour</label><small class="text-danger">*</small>
-                  <input type="text" name="hour" class="form-control" id="hour" placeholder="2" autocomplete="off" value="{{ $overtime->hour }}">
+                  <select class="form-control" name="hour" id="hour">
+                    <option value="60"
+                    @if($overtime->hour == "60")
+                    selected
+                    @endif
+                    >1 Hr</option>
+                    <option value="120" 
+                    @if($overtime->hour == "120")
+                    selected
+                    @endif>2 Hr</option>
+                    <option value="180"
+                    @if($overtime->hour == "180")
+                    selected
+                    @endif>3 Hr</option>
+                    <option value="240" 
+                    @if($overtime->hour == "240")
+                    selected
+                    @endif
+                    >4 Hr</option>
+                    <option value="300" 
+                    @if($overtime->hour == "300")
+                    selected
+                    @endif
+                    >5 Hr</option>
+                  </select>
                   <small class="text-danger err" id="hour-err"></small>
                 </div>
               </div>

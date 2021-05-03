@@ -38,7 +38,52 @@
             </tr>
           </thead>
           <tbody>
-
+            @foreach($employees as $k => $employee)
+            <tr>
+             <td>
+               <img src="{{$employee->mediaUrl['thumb']}}" class='table-user-thumb'>
+             </td>
+             <td>{{ $employee->first_name }}</td>
+             <td>{{ $employee->last_name }}</td>
+             <td>{{ $employee->phone }}</td>
+             <td>{{ $employee->email }}</td>
+             <td>{{ $employee->position->title }}</td>
+             <td>
+               <div class=''>
+                <b>Gender :</b> <span>{{$employee->gender}}</span></br>
+                <b>Employee Id :</b> <span>{{$employee->employee_id}}</span></br>
+                <b>Schedule :</b> <span>{{$employee->schedule->time_in.'-'.$employee->schedule->time_out}}</span></br>
+                <b>Address :</b> <span>{{$employee->address}}</span></br>
+              </div>
+             </td>
+             <td>
+              @if($employee->is_active == '1')
+                <span class='success-dot' title='Published' title='Active Employee'></span>
+              @else
+                <i class='ik ik-alert-circle text-danger alert-status' title='In-Active Employee'></i>
+              @endif
+             </td>
+             <td>
+               <div class='table-actions'>
+                <a data-href="{{route('admin.employee.show',['employee_id'=>$employee->employee_id])}}" class='show-employee cursure-pointer'>
+                  <i class='ik ik-eye text-primary'></i>
+                </a>
+                <a href="{{route("admin.employee.edit",['employee_id'=>$employee->employee_id])}}">
+                  <i class='ik ik-edit-2 text-dark'></i>
+                </a>
+                <a data-href="{{route("admin.employee.destroy",['id'=>$employee->id])}}" class='delete cursure-pointer'><i class='ik ik-trash-2 text-danger'></i></a>
+              </div>
+             </td>
+             <td>
+               <div class="custom-control custom-checkbox pl-1 align-self-center">
+                  <label class="custom-control custom-checkbox mb-0">
+                    <input type="checkbox" class="custom-control-input sub_chk" data-id="{{$employee->id}}">
+                    <span class="custom-control-label"></span>
+                  </label>
+                </div>
+             </td>
+            </tr>
+            @endforeach
           </tbody>
         </table>
     </div>
@@ -49,51 +94,7 @@
 <!--End data here-->
 
 <script type="text/javascript">
-
-  $(document).ready(function() {
-
-  // get data from serve ajax
-  var merchantDataTable = $("table#employee_data_table").DataTable({
-    "processing": true,
-    "serverSide": true,
-    "pagingType":"full_numbers",
-    "pageLength":25,
-    "autoWidth": false,
-    "lengthMenu": [ [10, 25, 50, 100,-1], [10, 25, 50,100, "All"] ],
-    "ajax": {
-      "url": "{{ $getDataTable }}",
-      "type": "POST"
-    },
-    "columnDefs": [
-    {
-      'targets': 9,
-      'searchable':false,
-      'orderable':false,
-      'render': function (data, type, full, meta){
-       return "<div class='custom-control custom-checkbox pl-1 align-self-center'><label class='custom-control custom-checkbox mb-0'><input type='checkbox' class='custom-control-input sub_chk' data-id='"+$('<div/>').text(data).html()+"'><span class='custom-control-label'></span></label></div>";
-     }
-   },
-   {
-    'targets': [0,7,8,9],
-    'searchable':false,
-    'orderable':false,
-    "className": "text-center"
-  }
-  ],
-  "columns":[
-  {"data":"avatar"},
-  {"data":"first_name"},
-  {"data":"last_name"},
-  {"data":"phone"},
-  {"data":"email"},
-  {"data":"position"},
-  {"data":"details"},
-  {"data":"is_active"},
-  {"data":"action"},
-  {"data":"id"},
-  ],
-});
-
-});
-
+  $(document).ready(function(){
+    $("#employee_data_table").DataTable();
+  });
 </script>

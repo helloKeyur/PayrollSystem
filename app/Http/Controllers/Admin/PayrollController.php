@@ -47,12 +47,18 @@ class PayrollController extends Controller
                     	return number_format($data->cashAdvances->sum('rate_amount'),2);
                     })
                     ->addColumn('overtime', function($data){
-                        $total_overtime_amount = $data->overtimes->sum('rate_amount') * $data->overtimes->sum('hour'); 
-                        return number_format($total_overtime_amount,2);
+                        $amount = 0;
+                        foreach($data->overtimes as $ov){
+                            $amount += ($ov->rate_amount * $ov->hour)/60;
+                        } 
+                        return number_format($amount,2);
                     })
                     ->addColumn('net_pay', function($data) use ($deduction_amount){
+                        $total_overtime_amount = 0;
+                        foreach($data->overtimes as $ov){
+                            $total_overtime_amount += ($ov->rate_amount * $ov->hour)/60;
+                        }
                     	$total_deduction = $deduction_amount + $data->cashAdvances->sum('rate_amount');
-                        $total_overtime_amount = $data->overtimes->sum('rate_amount') * $data->overtimes->sum('hour');
 
                     	$amount = ($data->gross_amount + $total_overtime_amount) - $total_deduction;
                     	if($amount <= 0){

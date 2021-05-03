@@ -101,7 +101,7 @@ class Employee extends Model implements HasMedia
     }
 
     public function getGrossAmountAttribute(){
-        return $this->attendances->sum('num_hour') * $this->attributes['rate_per_hour'];
+        return ($this->attendances->sum('num_hour') * $this->attributes['rate_per_hour'])/60;
     }
 
     protected function avatarMedia(){

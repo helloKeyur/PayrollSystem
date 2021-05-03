@@ -72,7 +72,7 @@
   {"data":"date"},
   {"data":"employee"},
   {"data":"details"},
-  {"data":"hour"},
+  {"data":"hour_in"},
   {"data":"rate_amount"},
   {"data":"action"},
   {"data":"id"},

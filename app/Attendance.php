@@ -21,6 +21,8 @@ class Attendance extends Model
         'date',
     ];
 
+    protected $appends = ['whr'];
+
     public function getDateAttribute(){
         return date("M d, Y",strtotime($this->attributes['date']));
     }
@@ -35,6 +37,10 @@ class Attendance extends Model
 
     public function getTimeOutAttribute(){
         return date('h:i A', strtotime($this->attributes['time_out']));
+    }
+
+    public function getWhrAttribute(){
+        return hoursandmins($this->attributes['num_hour'])."/hr";
     }
 
     public function setTimeInAttribute($value){

@@ -37,6 +37,9 @@ class OvertimeController extends Controller
                     ->addColumn('details', function($data){
                         return "<b>".$data->title."</b><p>".$data->description."</p>";
                     })
+                    ->addColumn('hour_in', function($data){
+                        return hoursandmins($data->hour)."/hr";
+                    })
                     ->addColumn('action', function($data){
                             $btn = "<div class='table-actions'>
                             <a href='".route($this->folder."edit",['slug'=>$data->slug])."'><i class='ik ik-edit-2 text-dark'></i></a>

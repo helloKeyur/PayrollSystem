@@ -73,7 +73,7 @@
   {"data":"employee"},
   {"data":"time_in_details"},
   {"data":"time_out"},
-  {"data":"work_hr"},
+  {"data":"whr"},
   {"data":"action"},
   {"data":"id"},
   ],

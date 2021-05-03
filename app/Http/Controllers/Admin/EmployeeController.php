@@ -26,9 +26,11 @@ class EmployeeController extends Controller
             'add_new' => route($this->folder.'create'),
             'getDataTable' => route($this->folder.'getDataTable'),
             'moveToTrashAllLink' => route($this->folder.'massDelete'),
+            'employees' => Employee::get(),
         ]);
     }
 
+    //not use now : 03-05-2021 @auther : kdvamja
     public function getDataTable(){
         $employees = Employee::get();
         return Datatables::of($employees)

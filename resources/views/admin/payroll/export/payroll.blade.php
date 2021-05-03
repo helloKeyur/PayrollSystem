@@ -135,7 +135,10 @@
                     @foreach($payrolls as $payroll) 
                     <tr>
                       @php
-                        $total_overtime_amount = $payroll->overtimes->sum('rate_amount') * $payroll->overtimes->sum('hour');
+                        $total_overtime_amount = 0;
+                        foreach($payroll->overtimes as $ov){
+                            $total_overtime_amount += ($ov->rate_amount * $ov->hour)/60;
+                        }
                         $net_pay = ($payroll->gross_amount + $total_overtime_amount) - ($deduction_amount + $payroll->cashAdvances->sum('rate_amount')); 
                         $total += $net_pay;
                       @endphp
