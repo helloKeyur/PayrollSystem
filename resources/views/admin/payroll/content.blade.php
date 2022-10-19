@@ -65,23 +65,35 @@ function printForm(formId,btn){
 
   $.ajax({
     url: $(formId).data('action'),
-    type: "POST",
+    type: 'POST',
     data : new FormData($(formId)[0]),
     processData: false,
     contentType: false,
     xhrFields: {
         'responseType': 'blob'
     },
-    beforeSend:function(){
-      btn.prop("disabled",true);
+    beforeSend:function() {
+      btn.prop('disabled',true);
     },
-    complete : function(){
+    complete : function() {
       btn.prop('disabled',false);
     },
-    success: function (data) {
+    success: function (blob, status, xhr) {
+        let filename = '';
+        const disposition = xhr.getResponseHeader('Content-Disposition');
+
+        if (disposition && disposition.indexOf('attachment') !== -1) {
+            const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+            const matches = filenameRegex.exec(disposition);
+
+            if (matches != null && matches[1]) {
+                filename = matches[1].replace(/['"]/g, '');
+            }
+        }
+
         let a = document.createElement('a');
-        a.href = window.URL.createObjectURL(data);
-        a.download = "test.pdf";
+        a.href = window.URL.createObjectURL(blob, status, xhr);
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
