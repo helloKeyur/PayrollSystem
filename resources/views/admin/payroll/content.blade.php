@@ -62,24 +62,48 @@
 // get data from serve ajax
 
 function printForm(formId,btn){
-  
+
   $.ajax({
     url: $(formId).data('action'),
-    type: "POST",
+    type: 'POST',
     data : new FormData($(formId)[0]),
     processData: false,
     contentType: false,
-    beforeSend:function(){
-      btn.prop("disabled",true);
+    xhrFields: {
+        'responseType': 'blob'
     },
-    complete : function(){
+    beforeSend:function() {
+      btn.prop('disabled',true);
+    },
+    complete : function() {
       btn.prop('disabled',false);
+    },
+    success: function (blob, status, xhr) {
+        let filename = '';
+        const disposition = xhr.getResponseHeader('Content-Disposition');
+
+        if (disposition && disposition.indexOf('attachment') !== -1) {
+            const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+            const matches = filenameRegex.exec(disposition);
+
+            if (matches != null && matches[1]) {
+                filename = matches[1].replace(/['"]/g, '');
+            }
+        }
+
+        let a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob, status, xhr);
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(a.href);
     }
   });
 }
 
 $(document).ready(function() {
-  
+
   var crntDate = moment().format('MMMM DD, YYYY');
   var lastDate = moment().subtract(30, 'days').format('MMMM DD, YYYY');
   var datePickerPlug = $('#date').daterangepicker({
@@ -87,7 +111,7 @@ $(document).ready(function() {
     "endDate": crntDate,
     locale: {format: 'MMMM DD, YYYY'},
   });
-  
+
   var table = $("table#payroll_data_table").DataTable({
     "processing": true,
     "serverSide": true,
@@ -130,7 +154,7 @@ $(document).ready(function() {
   });
 
   $("#pdfBtnPrintpayslilp,#pdfBtnPrintpayroll").on("click",function(e){
-    var formId = ($(this).attr("id") == "pdfBtnPrintpayslilp") ? "#payslipForm" : "#payrollForm"; 
+    var formId = ($(this).attr("id") == "pdfBtnPrintpayslilp") ? "#payslipForm" : "#payrollForm";
     printForm(formId,$(this));
   });
 });
