@@ -20,6 +20,7 @@ Clone the repo and follow below steps.
 *Make sure database is seed before you use these credentials.*
 
 **User:** admin@gmail.com
+
 **Password:** 123456
 
 ## ScreenShots
@@ -44,6 +45,11 @@ Clone the repo and follow below steps.
 
 ## Issues
 If you have any issues please report them [here](https://github.com/helloKeyur/PayrollSystem/issues).
+
+## Support
+You can feel free to connect with us via the [Telegram Channel](https://t.me/+BjDDgVz5BaE1ZTQ1) [Free].
+
+    GitHub (hellokeyur): Laravel Payroll Help - (https://t.me/+BjDDgVz5BaE1ZTQ1)
 
 ## Contribution
 Please feel free to make any project-related pull requests. You should give us an email at the following addresses if you wish to propose any new updates or features to the project.
